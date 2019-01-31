@@ -1,0 +1,74 @@
+<section class="wrapper style5">
+    <header class="major">
+        <h2>4 - Add Round Key</h2>
+        <p style="font-size: medium">
+            In the AddRoundKey step, the subkey is combined with the state. For each round, a subkey is <br>
+            derived from the main key using Rijndael's key schedule; each subkey is the same size as the <br>
+            state. The subkey is added by combining each byte of the state with the corresponding byte of <br>
+            the subkey using bitwise XOR.
+        </p>
+    </header>
+
+    <div class="container">
+        <div layout="row" layout-align="space-around center">
+
+            <!--Previous Step-->
+            <div align="center">
+                <table ng-controller="numCtrl">
+                    <tr class="keyspecial"><td ng-repeat="x in mixcolumnsresult[0] track by $index" ng-if="$index < 4">{{two(x)}}</td></tr>
+                    <tr class="keyspecial"><td ng-repeat="x in mixcolumnsresult[0] track by $index" ng-if="$index > 3 && $index <8">{{two(x)}}</td></tr>
+                    <tr class="keyspecial"><td ng-repeat="x in mixcolumnsresult[0] track by $index" ng-if="$index > 7 && $index <12">{{two(x)}}</td></tr>
+                    <tr class="keyspecial"><td ng-repeat="x in mixcolumnsresult[0] track by $index" ng-if="$index > 11 && $index <16">{{two(x)}}</td></tr>
+                </table>
+            </div>
+
+            <div align="center" flex="5">
+                ` \oplus `
+            </div>
+
+            <!--Round 1 Key -->
+
+            <div align="center">
+                <table ng-controller="keyCtrl">
+                    <tr><td ng-repeat="y in keyresult[1]" ng-if="$index < 4">{{two(y[0])}}</td></tr>
+                    <tr><td ng-repeat="y in keyresult[1]" ng-if="$index < 4">{{two(y[1])}}</td></tr>
+                    <tr><td ng-repeat="y in keyresult[1]" ng-if="$index < 4">{{two(y[2])}}</td></tr>
+                    <tr><td ng-repeat="y in keyresult[1]" ng-if="$index < 4">{{two(y[3])}}</td></tr>
+                </table>
+
+            </div>
+
+            <div align="center" flex="5">
+                =
+            </div>
+
+
+            <!--Result-->
+
+            <div align="center">
+                <table ng-controller="numCtrl">
+                    <tr class="keyspecial"><td ng-repeat="x in finalresult[1] track by $index" ng-if="$index < 4">{{two(x)}}</td></tr>
+                    <tr class="keyspecial"><td ng-repeat="x in finalresult[1] track by $index" ng-if="$index > 3 && $index <8">{{two(x)}}</td></tr>
+                    <tr class="keyspecial"><td ng-repeat="x in finalresult[1] track by $index" ng-if="$index > 7 && $index <12">{{two(x)}}</td></tr>
+                    <tr class="keyspecial"><td ng-repeat="x in finalresult[1] track by $index" ng-if="$index > 11 && $index <16">{{two(x)}}</td></tr>
+                </table>
+            </div>
+        </div>
+        <div layout="row" layout-align="space-around center">
+            <div align="center" style="padding-right: 6em !important;">
+                <p>Before AddRoundKey</p>
+            </div>
+            <div align="center" ng-controller="jumpCtrl">
+                <h3 style="margin-bottom: 0 !important;">Round Key 1</h3>
+                <p>Produced previously during <a ng-click="scrollTo('scheduleresult')">key schedule</a></p>
+            </div>
+            <div align="center" style="padding-left: 6em !important;">
+                <p>After AddRoundKey</p>
+            </div>
+        </div>
+    </div>
+
+    <div layout="row" layout-align="center" ng-controller="jumpCtrl">
+        <a class="button" type="submit" ng-click="scrollTo('result')">Proceed to all rounds overview</a>
+    </div>
+</section>

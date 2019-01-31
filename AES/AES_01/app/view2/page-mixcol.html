@@ -1,0 +1,91 @@
+<section id="one" class="wrapper style3">
+
+    <header class="major">
+        <h2 style="color: #ffecec !important;">3 - MixColumns</h2>
+        <p style="font-size: medium; color: #ffecec !important;">
+            The MixColumns() transformation operates on the State column-by-column, treating each
+            column as a four-term polynomial.<br>
+            The columns are considered as
+            polynomials over <script type='math/tex'>GF(2^8)</script>
+             and multiplied modulo <script type='math/tex'>x ^4 + 1</script> with a fixed polynomial a(x), <br>
+            given by <script type='math/tex'>a(x) = {03}x^3 \oplus {01}x^2 + {01}x + {02}</script> .
+        </p>
+    </header>
+
+    <div class="container" align="center">
+        <div class="row">
+            <!-- Before -->
+            <div class="4u" align="center">
+                <p>Before mixcolumns</p>
+                <table ng-controller="numCtrl">
+                    <tr class="light"><td ng-repeat="x in shiftrowsresult[0] track by $index" ng-if="$index < 4">{{two(x)}}</td></tr>
+                    <tr class="light"><td ng-repeat="x in shiftrowsresult[0] track by $index" ng-if="$index > 3 && $index <8">{{two(x)}}</td></tr>
+                    <tr class="light"><td ng-repeat="x in shiftrowsresult[0] track by $index" ng-if="$index > 7 && $index <12">{{two(x)}}</td></tr>
+                    <tr class="light"><td ng-repeat="x in shiftrowsresult[0] track by $index" ng-if="$index > 11 && $index <16">{{two(x)}}</td></tr>
+                </table>
+            </div>
+
+            <div class = "4u">
+                <div>
+                    <!-- The Matrix -->
+                    <span mathjax-autobind="'\\begin{bmatrix}02 & 03 & 01 & 01 \\\\
+                    01 & 02 & 03 & 01 \\\\
+                     01 & 01 & 02 & 03 \\\\
+                     03 & 01 & 01 & 02\\end{bmatrix}'"></span>
+
+                    <p><br></p>
+                    <p>
+                        The four bytes of the column are replaced by the following
+
+                        $$ s'_{0,c} = ({02}·s_{0,c}) \oplus ({03}·s_{1,c}) \oplus s_{2,c} \oplus s_{3,c} $$
+                        $$ s'_{1,c} = s_{0,c} \oplus ({02}·s_{1,c}) \oplus ({03}·s_{2,c}) \oplus s_{3,c} $$
+                        $$ s'_{2,c} = s_{0,c} \oplus s_{1,c} \oplus ({02}·s_{2,c}) \oplus ({03}·s_{3,c}) $$
+                        $$ s'_{3,c} = ({03}·s_{0,c}) \oplus s_{1,c} \oplus s_{2,c} \oplus ({02}·s_{3,c}) $$
+                    </p>
+
+                </div>
+                <div>
+
+                </div>
+            </div>
+
+            <!-- After -->
+
+            <div class="4u" align="center">
+                <p>After mixcolumns</p>
+                <table ng-controller="numCtrl">
+                    <tr class="light">
+                        <td ng-repeat="x in mixcolumnsresult[0] track by $index" ng-if="$index < 4">
+                            <a ng-controller="View1Ctrl" ng-click="showSteps($event, $index)" style="color:white;">
+                            {{two(x)}}</a>
+                        </td>
+                    </tr>
+                    <tr class="light">
+                        <td ng-repeat="x in mixcolumnsresult[0] track by $index" ng-if="$index > 3 && $index <8">
+                            <a ng-controller="View1Ctrl" ng-click="showSteps($event, $index)" style="color:white;">
+                                {{two(x)}}
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="light"><td ng-repeat="x in mixcolumnsresult[0] track by $index" ng-if="$index > 7 && $index <12">
+                        <a ng-controller="View1Ctrl" ng-click="showSteps($event, $index)" style="color:white;">
+                        {{two(x)}}
+                    </a></td></tr>
+                    <tr class="light"><td ng-repeat="x in mixcolumnsresult[0] track by $index" ng-if="$index > 11 && $index <16">
+                        <a ng-controller="View1Ctrl" ng-click="showSteps($event, $index)" style="color:white;">
+                            {{two(x)}}
+                        </a>
+                    </td></tr>
+                </table>
+                <!--
+                <input ng-model="tmp">
+                <span mathjax-autobind="tmp"></span>
+                -->
+            </div>
+
+        </div>
+    </div>
+    <div layout="row" layout-align="center" ng-controller="jumpCtrl">
+        <a class="button" type="submit" ng-click="scrollTo('addrk')">Proceed to Step 4: AddRoundKey</a>
+    </div>
+</section>

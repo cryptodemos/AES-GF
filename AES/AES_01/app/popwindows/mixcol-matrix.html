@@ -1,0 +1,122 @@
+<md-dialog aria-label="Matrix Calculation">
+    <form ng-cloak ng-controller="numCtrl">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <p style="margin:0;">Matrix Calculation for
+                    <span mathjax-autobind=" 's\'_{' + Math.floor(constant1.default/4) + ',' + constant1.default%4 + '}' "></span>
+                    : {{mixcolumnsresult[0][constant1.default]}}</p>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content" ng-controller="matrixCtrl"></div>
+            <div layout="row" layout-align="space-between center" style="margin-left: 5em;margin-right: 5em;">
+                <div><span mathjax-autobind="'\\begin{bmatrix}02 & 03 & 01 & 01 \\\\
+                        01 & 02 & 03 & 01 \\\\
+                        01 & 01 & 02 & 03 \\\\
+                        03 & 01 & 01 & 02\\end{bmatrix}'"></span></div>
+                <div>` * `</div>
+                <div>
+                    \begin{bmatrix}{{two(shiftrowsresult[0][constant1.default])}}\\
+                    {{two(shiftrowsresult[0][(constant1.default+4)%16])}}\\
+                    {{two(shiftrowsresult[0][(constant1.default+8)%16])}}\\
+                    {{two(shiftrowsresult[0][(constant1.default+12)%16])}}\end{bmatrix}</div>
+                <div>` = `</div>
+                <div>
+                    \begin{bmatrix}{{two(mixcolumnsresult[0][constant1.default])}}\\
+                    {{two(mixcolumnsresult[0][(constant1.default+4)%16])}}\\
+                    {{two(mixcolumnsresult[0][(constant1.default+8)%16])}}\\
+                    {{two(mixcolumnsresult[0][(constant1.default+12)%16])}}\end{bmatrix}</div>
+            </div>
+
+            <hr style="margin:1em;">
+            <div layout="row" layout-align="center"><b>Detail</b></div>
+            <div layout="row" layout-align="space-between center" style="margin: 0 2.5em 0 2.5em;">
+                <div ng-hide="constant1.default%4 != 0">\begin{bmatrix}02 & 03 & 01 & 01 \end{bmatrix}</div>
+                <div ng-hide="constant1.default%4 != 1">\begin{bmatrix}01 & 02 & 03 & 01 \end{bmatrix}</div>
+                <div ng-hide="constant1.default%4 != 2">\begin{bmatrix}01 & 01 & 02 & 03 \end{bmatrix}</div>
+                <div ng-hide="constant1.default%4 != 3">\begin{bmatrix}03 & 01 & 01 & 02 \end{bmatrix}</div>
+                ` * `
+                <div>\begin{bmatrix}{{two(shiftrowsresult[0][constant1.default])}}\\{{two(shiftrowsresult[0][(constant1.default+4)%16])}}\\
+                    {{two(shiftrowsresult[0][(constant1.default+8)%16])}}\\{{two(shiftrowsresult[0][(constant1.default+12)%16])}}\end{bmatrix}</div>
+                ` = `
+                <div>\begin{bmatrix}{{mixcolumnsresult[0][constant1.default]}}\end{bmatrix}</div>
+            </div>
+            <!--
+                Pass in value: $index of the cell
+            -->
+
+            <!--Detail-->
+            <div layout="row" layout-align="space-between center" style="margin: 1em 2em 0 2em;">
+                <!-- 1st Section-->
+                <div ng-hide="constant1.default%4 != 0">` 02_{16} `</div>
+                <div ng-hide="constant1.default%4 != 1 && constant1.default%4 != 2">` 01_{16} `</div>
+                <div ng-hide="constant1.default%4 != 3">` 03_{16} `</div>
+                `* {{two(shiftrowsresult[0][constant1.default])}}_{16}  \oplus `
+
+                <!-- 2nd Section-->
+                <div ng-hide="constant1.default%4 != 1">` 02_{16} `</div>
+                <div ng-hide="constant1.default%4 != 2 && constant1.default%4 != 3">` 01_{16} `</div>
+                <div ng-hide="constant1.default%4 != 0">` 03_{16} `</div>
+                `* {{two(shiftrowsresult[0][(constant1.default+4)%16])}}_{16}  \oplus `
+
+                <!-- 3rd Section-->
+                <div ng-hide="constant1.default%4 != 2">` 02_{16} `</div>
+                <div ng-hide="constant1.default%4 != 0 && constant1.default%4 != 3">` 01_{16} `</div>
+                <div ng-hide="constant1.default%4 != 1">` 03_{16} `</div>
+                `* {{two(shiftrowsresult[0][(constant1.default+8)%16])}}_{16}  \oplus `
+
+                <!-- 4th Section-->
+                <div ng-hide="constant1.default%4 != 3">` 02_{16} `</div>
+                <div ng-hide="constant1.default%4 != 0 && constant1.default%4 != 1">` 01_{16} `</div>
+                <div ng-hide="constant1.default%4 != 2">` 03_{16} `</div>
+                `* {{two(shiftrowsresult[0][(constant1.default+12)%16])}}_{16}  =
+                {{mixcolumnsresult[0][constant1.default]}}_{16} `
+
+            </div>
+
+            <!-- Binary -->
+
+
+            <div layout="row" layout-align="space-around-center" style="margin: 0 2em 0 2em;">
+                <div>
+                    <div ng-repeat="$index in [0,1,2,3]">
+                        `{{mixc[constant1.default%4][$index.toString()]}} * {{two(shiftrowsresult[0][(constant1.default+$index*4)%16])}}`
+                    </div>
+                </div>
+                <div><div ng-repeat="$index in [0,1,2,3]">=</div></div>
+                <div>
+                    <div ng-repeat="$index in [0,1,2,3]">
+                        `{{toBin(mixc[constant1.default%4][$index.toString()])}}_{2} * {{toBin(shiftrowsresult[0][(constant1.default+$index*4)%16])}}_{2}`
+                    </div>
+                </div>
+                <div><div ng-repeat="$index in [0,1,2,3]">=</div></div>
+                <div style="margin-top: 7em;"><div>`\oplus`</div><div>`=`</div></div>
+
+                <div style="margin-top: 1.75em;">
+                    <div ng-repeat="$index in [0,1,2]">
+                        `{{toBin(parse_mul(mixc[constant1.default%4][$index.toString()], two(shiftrowsresult[0][(constant1.default+$index*4)%16])))}}_{2}`
+                    </div>
+                    <div>
+                        `{{toBin(parse_mul(mixc[constant1.default%4]["3"], two(shiftrowsresult[0][(constant1.default+12)%16])))}}_{2}`
+                    </div>
+                    <hr style="margin: 0 !important;">
+                    <div>`{{toBin(mixcolumnsresult[0][constant1.default])}}_{2}`</div>
+                </div>
+
+                <div style="margin-top: 8.75em;"><div>=</div></div>
+                <div style="margin-top: 8.8em;">
+                    <div>`{{mixcolumnsresult[0][constant1.default]}}_{16}`</div>
+                </div>
+
+            </div>
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()">Okay, I got it!</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

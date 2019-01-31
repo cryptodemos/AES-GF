@@ -1,0 +1,95 @@
+<section id="one" class="wrapper style1">
+    <header class="major">
+        <h2>Final Result</h2>
+        <p style="font-size: medium">Overview of each process after 10 rounds</p>
+    </header>
+
+    <div ng-controller="numCtrl">
+
+        <div ng-repeat="tab in finalresult" layout="row" layout-align="space-around center">
+            <div flex="15" align="center">
+                <p ng-if="$index == 0"> Input </p>
+                <p ng-if="$index > 0 && $index < 11">Round {{$index}}</p>
+                <p ng-if="$index == 11"> Result </p>
+            </div>
+
+            <div flex="15" align="center">
+                <p ng-if="$index == 0">Start of the Round</p>
+                <table >
+                    <tr class="special"><th></th></tr>
+                    <tr><td ng-repeat="x in tab track by $index" ng-if="$index < 4" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                    <tr><td ng-repeat="x in tab track by $index" ng-if="$index > 3 && $index <8" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                    <tr><td ng-repeat="x in tab track by $index" ng-if="$index > 7 && $index <12" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                    <tr><td ng-repeat="x in tab track by $index" ng-if="$index > 11 && $index <16" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                </table>
+            </div>
+            <div flex="15" align="center">
+                <p ng-if="$index == 0">After Subbytes</p>
+                <table ng-if="$index == 0">
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                </table>
+                <table ng-if="$index > 0">
+                    <tr class="special"><th></th></tr>
+                    <tr><td ng-repeat="x in subbytesresult[$index-1] track by $index" ng-if="$index < 4" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                    <tr><td ng-repeat="x in subbytesresult[$index-1] track by $index" ng-if="$index > 3 && $index <8" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                    <tr><td ng-repeat="x in subbytesresult[$index-1] track by $index" ng-if="$index > 7 && $index <12" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                    <tr><td ng-repeat="x in subbytesresult[$index-1] track by $index" ng-if="$index > 11 && $index <16" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                </table>
+            </div>
+            <div flex="15" align="center">
+                <p ng-if="$index == 0">After ShiftRows</p>
+                <table ng-if="$index == 0">
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                </table>
+                <table ng-if="$index > 0">
+                    <tr class="special"><th></th></tr>
+                    <tr><td ng-repeat="x in shiftrowsresult[$index-1] track by $index" ng-if="$index < 4" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                    <tr><td ng-repeat="x in shiftrowsresult[$index-1] track by $index" ng-if="$index > 3 && $index <8" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                    <tr><td ng-repeat="x in shiftrowsresult[$index-1] track by $index" ng-if="$index > 7 && $index <12" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                    <tr><td ng-repeat="x in shiftrowsresult[$index-1] track by $index" ng-if="$index > 11 && $index <16" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                </table>
+            </div>
+            <div flex="15" align="center">
+                <p ng-if="$index == 0">After MixColumns</p>
+                <table ng-if="$index == 0">
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                </table>
+                <table ng-if="$index > 0">
+                    <tr class="special"><th></th></tr>
+                    <tr><td ng-repeat="x in mixcolumnsresult[$index-1] track by $index" ng-if="$index < 4" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                    <tr><td ng-repeat="x in mixcolumnsresult[$index-1] track by $index" ng-if="$index > 3 && $index <8" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                    <tr><td ng-repeat="x in mixcolumnsresult[$index-1] track by $index" ng-if="$index > 7 && $index <12" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                    <tr><td ng-repeat="x in mixcolumnsresult[$index-1] track by $index" ng-if="$index > 11 && $index <16" style="margin: 0; line-height: 2px">{{two(x)}}</td></tr>
+                </table>
+            </div>
+            <div flex="5" align="center">
+                <p ng-if="$index < 11">` \oplus `</p>
+            </div>
+            <div flex="15" align="center">
+                <p ng-if="$index == 0">Round Key</p>
+                <table>
+                    <tr class="special"><th></th></tr>
+                    <tr><td ng-repeat="x in roundkey[$index]" ng-if="$index < 4" style="margin: 0; line-height: 2px">{{two(x[0])}}</td></tr>
+                    <tr><td ng-repeat="x in roundkey[$index]" ng-if="$index < 4" style="margin: 0; line-height: 2px">{{two(x[1])}}</td></tr>
+                    <tr><td ng-repeat="x in roundkey[$index]" ng-if="$index < 4" style="margin: 0; line-height: 2px">{{two(x[2])}}</td></tr>
+                    <tr><td ng-repeat="x in roundkey[$index]" ng-if="$index < 4" style="margin: 0; line-height: 2px">{{two(x[3])}}</td></tr>
+                </table>
+            </div>
+            <div flex="5" align="center" >
+                <p ng-if="$index < 11">` = `</p>
+            </div>
+
+        </div>
+    </div>
+
+
+</section>

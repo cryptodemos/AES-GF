@@ -1,0 +1,73 @@
+<section class="wrapper style6" ng-controller="numCtrl">
+    <header class="major">
+        <h2 style="color: #ffecec !important;">2 - ShiftRow</h2>
+        <p style="font-size: medium; color: #ffecec !important;">
+            In the ShiftRows() transformation, the bytes in the last three rows of the State are cyclically <br>
+            shifted over different numbers of bytes (offsets). The first row, r = 0, is not shifted.
+        </p>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="4u" align="center">
+                <table>
+                    <tr class="keyspecial"><td ng-repeat="x in subbytesresult[0] track by $index" ng-if="$index < 4">{{two(x)}}</td></tr>
+                    <tr class="keyspecial"><td ng-repeat="x in subbytesresult[0] track by $index" ng-if="$index > 3 && $index <8">{{two(x)}}</td></tr>
+                    <tr class="keyspecial"><td ng-repeat="x in subbytesresult[0] track by $index" ng-if="$index > 7 && $index <12">{{two(x)}}</td></tr>
+                    <tr class="keyspecial"><td ng-repeat="x in subbytesresult[0] track by $index" ng-if="$index > 11 && $index <16">{{two(x)}}</td></tr>
+                </table>
+                <p>Before ShiftRow</p>
+            </div>
+            <div class="4u" align="center">
+            <div class="mytable">
+                <div><img src="images/leftarrow.png" height="60" width="160"></div>
+                <!--Group 1-->
+                <!--<div ng-show="ngClick">-->
+                <div>
+                    <div class="special"><p>Shift 1 Byte to the Left</p></div>
+                </div>
+                <!--Group 2-->
+                <div>
+                    <!--
+                    <div><img src="images/arrow1.png" height="16" width="37"></div>
+                    <div><img src="images/arrow1.png" height="16" width="37"></div>
+                    -->
+                    <div class="special"><p>Shift 2 Bytes to the Left</p></div>
+                </div>
+                <!--Group 3 -->
+                <div>
+                    <div class="special"><p>Shift 3 Bytes to the Left</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="4u" align="center">
+            <table>
+                <tr class="keyspecial"><td ng-repeat="x in shiftrowsresult[0] track by $index" ng-if="$index < 4">{{two(x)}}</td></tr>
+                <tr class="keyspecial">
+                    <td>{{two(shiftrowsresult[0][4])}}</td>
+                    <td>{{two(shiftrowsresult[0][5])}}</td>
+                    <td>{{two(shiftrowsresult[0][6])}}</td>
+                    <td class="emphasis">{{two(shiftrowsresult[0][7])}}</td>
+                </tr>
+                <tr class="keyspecial">
+                    <td>{{two(shiftrowsresult[0][8])}}</td>
+                    <td>{{two(shiftrowsresult[0][9])}}</td>
+                    <td class="emphasis">{{two(shiftrowsresult[0][10])}}</td>
+                    <td class="emphasis">{{two(shiftrowsresult[0][11])}}</td>
+                </tr>
+                <tr class="keyspecial">
+                    <td>{{two(shiftrowsresult[0][12])}}</td>
+                    <td class="emphasis">{{two(shiftrowsresult[0][13])}}</td>
+                    <td class="emphasis">{{two(shiftrowsresult[0][14])}}</td>
+                    <td class="emphasis">{{two(shiftrowsresult[0][15])}}</td>
+                </tr>
+            </table>
+            <p>After ShiftRow</p>
+        </div>
+        </div>
+    </div>
+
+    <div layout="row" layout-align="center" style="padding-top: 3em;" ng-controller="jumpCtrl">
+        <a class="button white" type="submit" ng-click="scrollTo('mixcol')">Proceed to Step 3: MixColumns</a>
+    </div>
+</section>

@@ -1,0 +1,38 @@
+<md-content class="dark-theme1" style="padding: 7em 0 5em 0;">
+    <div layout="row" layout-align="space-around center" ng-controller="insuredCtrl">
+    <div layout="row" layout-align="space-between center">
+        <div flex="95" style="padding-right: 2em;">
+            <form name="userForm">
+                <md-input-container class="md-block" flex-gt-xs>
+                    <label style="font-size: large; color: white;">Text Input</label>
+                    <input style="color: white;" ng-model="constant1.output[0]" disabled>
+                </md-input-container>
+            </form>
+        </div>
+        <div flex="5">
+            <table style="font-size: small;">
+                <tr ng-repeat="i in [0,1,2,3]">
+                    <td class="smallspecial" ng-repeat="j in [1,2,3,4]">{{new_input[i*4+j-1]}}</td></tr>
+                <tr>
+            </table>
+        </div>
+    </div>
+    <div layout="row" layout-align="space-between center" style="padding-right: 5em;">
+        <div flex="95" style="padding-right: 2em">
+            <form name="userForm">
+                <md-input-container class="md-block" flex-gt-xs>
+                    <label style="font-size: large; color: white;">Cipher Key</label>
+                    <input style="color: white;" ng-model="constant1.output[1]" disabled>
+                </md-input-container>
+            </form>
+        </div>
+        <div flex="5" style="padding-left: 1em">
+            <table style="font-size: small;">
+                <tr ng-repeat="i in [0,1,2,3]">
+                    <td class="smallspecial" ng-repeat="j in [1,2,3,4]">{{new_output[i*4+j-1]}}</td></tr>
+                <tr>
+            </table>
+        </div>
+    </div>
+</div>
+</md-content>

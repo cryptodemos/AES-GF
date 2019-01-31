@@ -1,0 +1,35 @@
+<section>
+    <div ng-controller="AppCtrl" ng-include="'view1/page-header.html'"></div>
+</section>
+
+<section id="scheduledetail">
+    <div ng-controller="insuredCtrl" ng-include="'view1/page-keyschedule.html'"></div>
+</section>
+
+<section id="scheduleresult" class="wrapper style4">
+    <div ng-controller="keyCtrl" ng-include="'view1/page-keyScheduleResult.html'"></div>
+</section>
+
+<section id="overview" class="wrapper style1">
+    <div ng-controller="overviewController" ng-include="'view1/page-overview.html'"></div>
+</section>
+
+<section id="subbytes" class="wrapper style7">
+    <div ng-controller="sBoxCtrl" ng-include="'view2/page-subbytes.html'"></div>
+</section>
+
+<section id="shiftrow" class="wrapper style6">
+    <div ng-include="'view2/page-shiftrow.html'"></div>
+</section>
+
+<section id="mixcol" class="wrapper style3">
+    <div ng-controller="mixColCtrl" ng-include="'view2/page-mixcol.html'"></div>
+</section>
+
+<section id="addrk" class="wrapper style5">
+    <div ng-include="'view2/page-addroundkey.html'"></div>
+</section>
+
+<section id="result" class="wrapper style1">
+    <div ng-controller="resultController" ng-include="'view1/page-result.html'"></div>
+</section>

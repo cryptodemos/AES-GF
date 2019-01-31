@@ -1,0 +1,71 @@
+<md-dialog aria-label="Bit-wise Calculation">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Bit-wise XOR calculation</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content" ng-controller="insuredCtrl" layout="row" layout-align="space-between center">
+                <!--1st-->
+                <div>
+                    {{new_output[0]}}` \oplus `{{findsbox(new_output[7])}}` \oplus `{{(rcon[0]["c0"])}}
+                    ` = `{{addthree(new_output[0],findsbox(new_output[7]),rcon[0]["c0"])}}
+                    <div layout="row" layout-align="space-around center">
+                        <div layout="column" layout-align="space-around center">
+                            <div>` {{new_output[0]}}_{16} ` </div>
+                            <div>` {{findsbox(new_output[7])}}_{16}`</div>
+                            <div>` \underline {01_{16}}`</div>
+                            <div>` {{addthree(new_output[0],findsbox(new_output[7]),rcon[0]["c0"])}}_{16}`</div>
+                        </div>
+                        <div layout="column" layout-align="space-around center">
+                            <div>`=` </div><div>`=` </div>
+                            <div>`=` </div><div>`=` </div>
+                        </div>
+                        <div>
+                            ` \begin{array}{add}
+                            & {{toBin(new_output[0])}}_{2} \\
+                            & {{toBin(findsbox(new_output[7]))}}_{2} \\
+                            & \underline {0000 0001_{2}}\\
+                            & {{toBin(addthree(new_output[0],findsbox(new_output[7]),rcon[0]["c0"]))}}_{2} \\
+                            \end{array} `
+                        </div>
+                    </div>
+                </div>
+
+                <!--2nd to 4th-->
+                <div ng-repeat="i in [0,1,2]" style="padding-left: 3em;">
+                    {{new_output[(i+1)*4]}}` \oplus `{{findsbox(new_output[((i*4)+11)%16])}}` \oplus `{{rcon[0]["c1"]}}
+                    ` = `{{addthree(new_output[(i+1)*4],findsbox(new_output[((i*4)+11)%16]),rcon[0]["c1"])}}
+                    <div layout="row" layout-align="space-around center">
+                        <div layout="column" layout-align="space-around center">
+                            <div>` {{new_output[(i+1)*4]}}_{16} ` </div>
+                            <div>` {{findsbox(new_output[((i*4)+11)%16])}}_{16}`</div>
+                            <div>` \underline {00_{16}}`</div>
+                            <div>` {{addthree(new_output[(i+1)*4],findsbox(new_output[((i*4)+11)%16]),rcon[0]["c1"])}}_{16}`</div>
+                        </div>
+                        <div layout="column" layout-align="space-around center">
+                            <div ng-repeat="j in [0,1,2,3]">`=`</div>
+                        </div>
+                        <div>
+                            ` \begin{array}{add}
+                            & {{toBin(new_output[(i+1)*4])}}_{2} \\
+                            & {{toBin(findsbox(new_output[(i*4+11)%16]))}}_{2} \\
+                            & \underline {0000 0000_{2}} \\
+                            & {{toBin(addthree(new_output[(i+1)*4],findsbox(new_output[(i*4+11)%16]),rcon[0]["c0"]))}}_{2} \\
+                            \end{array} `
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()">Okay, I got it!</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

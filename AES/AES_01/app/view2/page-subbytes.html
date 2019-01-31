@@ -1,0 +1,104 @@
+<section id="one" class="wrapper style7">
+    <header class="major">
+        <h2>1 - Subbytes</h2>
+        <p style="font-size: medium">
+            In the SubBytes step, each byte ` a_(i,j) ` in the state matrix is replaced with a SubByte ` s_(i,j) ` using the Rijndael<br>
+            S-box. This operation provides the non-linearity in the cipher. The S-box used is derived from the multiplicative inverse<br>
+            over ` GF(2^8) `, known to have good non-linearity properties. <br>
+            To avoid attacks based on simple algebraic properties, the S-box is constructed by combining the inverse function with an<br>
+            invertible affine transformation.
+        </p>
+    </header>
+
+    <section style="padding: 1em 5em 3em 5em;">
+        <div layout="row" layout-align="space-around center">
+            <div class="dialogwhite">
+                <p><br>* Reminder *<br><br>
+                There is an initial round: <br>Add Round Key before 1st <br>Round SubBytes.<br></p>
+            </div>
+            <div class="dialogwhite">
+                <div layout="row" layout-align="space-around center" ng-controller="numCtrl">
+
+                    <!-- Initial State Input-->
+                    <div class="\-6u">
+                        <table>
+                            <tr ng-repeat="i in [0,1,2,3]"><td ng-repeat="j in [0,1,2,3]">{{new_input[i*4+j]}}</td></tr>
+                        </table>
+                    </div>
+                    <div class="\-4u">` \oplus `</div>
+                    <!-- Initial State Cipher Key-->
+                    <div class="\-6u">
+                        <table>
+                            <tr ng-repeat="i in [0,1,2,3]"><td ng-repeat="j in [0,1,2,3]">{{new_key[i*4+j]}}</td></tr>
+                        </table>
+                    </div>
+                    <div class="\-4u">=</div>
+                    <!-- Result -->
+                    <div class="\-6u">
+                        <table>
+                            <tr ng-repeat="i in [0,1,2,3]"><td ng-repeat="j in [0,1,2,3]">{{constant1.roundresult[0][i*4+j]}}</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="wrapper style7">
+        <div layout="row" layout-align="center center">
+            <div layout="column" layout-align="space-around center">
+                <!--Before-->
+                <div layout="row" layout-align="space-around center">
+                    <div align="center">
+                        <table ng-controller="numCtrl">
+                            <tr ng-repeat="i in [0,1,2,3]"><td ng-repeat="j in [0,1,2,3]">{{constant1.roundresult[0][i*4+j]}}</td></tr>
+                        </table>
+                        <p>Before S-Box Substituion</p>
+                    </div>
+                    <div layout="column" layout-align="center-center" style="padding-left: 5em;">
+                        <p style="margin:0;">Look up each cell into S-Box</p>
+                        <img src="images/leftarrow.png" height="80" width="160">
+                    </div>
+                </div>
+                <!--Empty-->
+                <div style="margin:1.5em 0 1.5em 0;">
+
+                </div>
+
+                <!--After-->
+                <div layout="row" layout-align="space-around center">
+                    <div align="center">
+                        <table ng-controller="insuredCtrl">
+                            <tr ng-repeat="k in [0,1,2,3]"><td ng-repeat="l in [0,1,2,3]">{{findsbox(constant1.roundresult[0][k*4+l])}}</td></tr>
+                        </table>
+                        <p>After S-Box Substituion</p>
+                    </div>
+                    <div layout="column" layout-align="start center" style="padding-left: 5em;">
+                        <p style="margin:0;">Substitute by S-Box values</p>
+                        <img src="images/rightarrow.png " height="80" width="160">
+                    </div>
+                </div>
+            </div>
+
+            <!-- S-box -->
+            <div class="6u" style="padding-left: 5em;" align="center">
+                <table ng-controller="insuredCtrl" style="font-size: x-small;">
+                    <tr ng-repeat="data in sbox" class="special">
+                        <td ng-repeat="datum in data" style="margin: 0; line-height: 4px" ng-style="resultarr[datum]"
+                            ng-hide="datum == findsbox(constant1.roundresult[0][$index])">
+                            <a href="../../../GF/app/#!/sbox?internal&val={{($parent.$index-1)*16 + ($index-1)}}"
+                               style="text-decoration:none;color:black;">
+                                {{datum.substr(2,2)}}
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <p>S-Box<br> Byte Substitution Table</p>
+            </div>
+        </div>
+
+        <div layout="row" layout-align="center" style="padding-top: 3em;" ng-controller="jumpCtrl">
+            <a class="button special" type="submit" ng-click="scrollTo('shiftrow')">Proceed to Step 2: ShiftRows</a>
+        </div>
+    </section>
+</section>

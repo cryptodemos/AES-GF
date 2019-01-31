@@ -1,0 +1,54 @@
+<section id="one" class="wrapper style4" ng-controller="keyCtrl">
+    <header class="major" >
+        <h2 style="color: #ffffff !important;">Key Schedule</h2>
+        <p style="color: #ffffff !important;">Result</p>
+    </header>
+
+
+    <div layout="column" layout-align="center center">
+        <div class="\-4u">
+            <div>
+            <table>
+                <tr><td ng-repeat="y in keyresult[0]" ng-if="$index < 4">{{y[0]}}</td></tr>
+                <tr><td ng-repeat="y in keyresult[0]" ng-if="$index < 4">{{y[1]}}</td></tr>
+                <tr><td ng-repeat="y in keyresult[0]" ng-if="$index < 4">{{y[2]}}</td></tr>
+                <tr><td ng-repeat="y in keyresult[0]" ng-if="$index < 4">{{y[3]}}</td></tr>
+            </table>
+            </div>
+            <div align="center">
+            <p>Cipher Key</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div layout="row" layout-align="space-around center">
+        <div class="\-4u" ng-repeat="x in keyresult" ng-if="$index > 0 && $index < 6">
+            <table>
+                <tr><td  ng-repeat="y in x" ng-if="$index < 4">{{y[0]}}</td></tr>
+                <tr><td  ng-repeat="y in x" ng-if="$index < 4">{{y[1]}}</td></tr>
+                <tr><td ng-repeat="y in x" ng-if="$index < 4">{{y[2]}}</td></tr>
+                <tr><td ng-repeat="y in x" ng-if="$index < 4">{{y[3]}}</td></tr>
+            </table>
+            <p align="center">Round {{$index}} Key </p>
+        </div>
+    </div>
+
+    <div layout="row" layout-align="space-around center">
+        <div class="\-4u" ng-repeat="x in keyresult" ng-if="$index > 5 && $index < 11">
+            <table>
+                <tr><td  ng-repeat="y in x" ng-if="$index < 4">{{y[0]}}</td></tr>
+                <tr><td  ng-repeat="y in x" ng-if="$index < 4">{{y[1]}}</td></tr>
+                <tr><td ng-repeat="y in x" ng-if="$index < 4">{{y[2]}}</td></tr>
+                <tr><td ng-repeat="y in x" ng-if="$index < 4">{{y[3]}}</td></tr>
+            </table>
+            <p align="center">Round {{$index}} Key </p>
+        </div>
+    </div>
+
+    <div layout="row" layout-align="center" style="padding-top: 3em;" ng-controller="jumpCtrl">
+        <a class="button white" type="submit" ng-click="scrollTo('overview')">Proceed to Encryption Process</a>
+    </div>
+
+</section>
+

@@ -1,0 +1,176 @@
+<!-- page-home.html -->
+<link rel="stylesheet" href="app.css" />
+<section id="banner">
+  <div class="inner">
+    <h2>AES Cryptography</h2>
+    <p>Basic number theory applied in Advanced Encryption Standard</p>
+    <ul class="actions">
+      <li><a href="#/input" class="button big special">Demo</a></li>
+    </ul>
+  </div>
+</section>
+
+
+<!--One -->
+<section id="one" class="wrapper style1">
+  <header class="major">
+    <h2>About AES</h2>
+    <p>Advanced Encryption Standard Basics</p>
+    <p style="font-size: medium">
+      The Advanced Encryption Standard (AES) is formal encryption method adopted by the National Institute of Standards and Technology of<br>
+      the US Government, and is accepted worldwide. It is founded on solid and well-published mathematical ground, and appears to resist <br>
+      all known attacks with no back-door or known weakness.
+    </p>
+  </header>
+  <style type="text/css">
+
+
+  </style>
+
+
+
+  <div class="container" ng-controller="NumberController">
+    <div layout = 'row'>
+<!--
+      <div flex="45" layout="column" >
+        <div layout="row" layout-align="end center">
+          <div><p style="padding-top: 15px; padding-right: 1em !important;"><b>Plain Text</b></p></div>
+          <div>
+            <marquee class="marquee_horizontal" direction="Right" behavior="scroll" scrollamount="12" >
+              {{displaynumber}}</marquee>
+          </div>
+          <div style="padding-left: 0.5em !important;"><img src="images/arrow1.png" height="50px" width="50px"></div>
+        </div>
+        <div layout = "row" layout-align="end center">
+          <div>
+            <p style="padding-top: 15px; padding-right: 1em !important;"><b>Cipher Key</b></p>
+          </div>
+          <div>
+            <marquee class="marquee_horizontal" direction="Right" behavior="scroll" scrollamount="10" >
+              {{displaynumber}}
+            </marquee>
+          </div>
+          <div style="padding-left: 0.5em !important;">
+            <img src="images/arrow1.png" height="50px" width="50px">
+          </div>
+        </div>
+
+      </div>
+
+      <div flex="25" style="padding-top: 1em;">
+        <p class="rijnbox">
+          <br>Rijndael <br>Encryptor
+        </p>
+      </div>
+    </div>
+
+    <div layout="row" layout-align="center start">
+      <div layout="column" layout-align="center center">
+        <div class="adjust">
+          <img src="images/arrow2.png" height="50px" width="50px">
+        </div>
+        <div class="adjust">
+        <marquee class="marquee_vertical" direction="down" behavior="scroll" scrollamount="20" >
+          {{displaynumber}}
+        </marquee></div>
+        <div class="adjust"><p><b>Cipher Text</b></p></div>
+      </div>
+    </div>
+  </div>
+-->
+  <div class="container">
+    <div class="row">
+      <div class="4u">
+        <section class="special box">
+          <i class="icon fa-area-chart major"></i>
+          <h3>AES Background</h3>
+          <p>
+            In 1997 the US National Institute of Standards and Technology put out a call for candidates for a
+            replacement for the ageing Data Encryption Standard, DES. 15 candidates were accepted for further
+            consideration, and after a fully public process and three open international conferences, the final
+            candidate was announced and comments were solicited. It was developed by Belgian
+            researchers in Belgium therefore voiding the conspiracy theories sometimes voiced concerning an
+            encryption standard developed by a United States government agency.
+          </p>
+          {{c.output}}
+        </section>
+      </div>
+      <div class="4u">
+        <section class="special box">
+          <i class="icon fa-refresh major"></i>
+          <h3>AES Algorithm</h3>
+          <p>
+            The AES encryption algorithm is a block cipher that uses
+            an encryption key and several rounds of encryption. A
+            block cipher is an encryption algorithm that works on a
+            single block of data at a time. In the case of standard AES
+            encryption the block is 128 bits, or 16 bytes, in length. The
+            term “rounds” refers to the way in which the encryption
+            algorithm mixes the data re-encrypting it ten to fourteen
+            times depending on the length of the key.
+            The AES algorithm itself is not a computer program or
+            computer source code. It is a mathematical description
+            of a process of obscuring data.
+          </p></section>
+      </div>
+      <div class="4u">
+        <section class="special box">
+          <i class="icon fa-cog major"></i>
+          <h3>Encryption Keys</h3>
+          <p>
+            AES encryption uses a single key as a part of the
+            encryption process. The key can be 128 bits (16 bytes),
+            192 bits (24 bytes), or 256 bits (32 bytes) in length.
+          </p>
+          <p>
+            With AES both the encryption and the
+            decryption are performed using the same key. This is
+            called a symmetric encryption algorithm. An encryption key
+            is simply a binary string of data used
+            in the encryption process. Because the same encryption
+            key is used to encrypt and decrypt data, it is important
+            to keep the encryption key a secret and to use keys that
+            are hard to guess. Some keys are generated by software
+            used for this specific task. Another method is to derive a
+            key from a pass phrase. Good encryption systems never
+            use a pass phrase alone as an encryption key.
+          </p></section>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--
+<footer id="footer">
+<div class="row double">
+    <div class="1u">
+        <p> <br></p>
+    </div>
+      <div class="5u">
+        <h3>More about AES</h3>
+        <ul class="alt">
+          <li><a href="http://csrc.nist.gov/archive/aes/round1/conf2/Schneier.pdf">AES Performances</a></li>
+          <li><a href="http://www.ijeit.com/vol%202/Issue%206/IJEIT1412201212_64.pdf">Comparison Between DES and AES</a></li>
+          <li><a href="http://www.sersc.org/journals/IJSIA/vol9_no7_2015/21.pdf">Comparison Between 3DES and AES</a></li>
+        </ul>
+      </div>
+    <div class="5u">
+      <h2>About Developer</h2>
+      <p>Zhou Yanjun Shannon is currently a final-year student studying Double Degree in Business and Computing in Nanyang Technological University, Singapore.
+        She started her interest in Cryptography during her semester exchange in EPFL, Switzerland.
+        This web demo suite is developed in order to enhance understanding and study in AES cryptography for students taking CZ4XXX. </p>
+      <ul class="icons">
+        <li><a href="#" class="icon fa-comment"><span class="label">E-mail</span></a></li>
+        <li><a href="#" class="icon fa-phone"><span class="label">Phone</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+      </ul>
+    </div>
+  <div class="1u">
+    <p> <br></p>
+  </div>
+
+</div>
+</footer>
+-->
