@@ -1,0 +1,26 @@
+<md-content>
+    <div layout-margin>
+        <h1 class="md-title">
+        From ` Number ` To ` Polynomial `
+        </h1>
+    <p >A polynomial with coefficients drawn from a set ` S ` can be represented by assigning a numeric value. For instance, the polynomial ` x^3+x^2+1 ` with coefficients from  ` GF(2) ` can be represented as ` 1101_2 ` in binary representation, or ` 13_10 ` in decimal representation, or  ` d_{HEX} ` in hexadecimal representation.
+
+        Below, we demonstrate how a numeric representation (for a given choice of radix – e.g. decimal, binary, hex, octal) can be interpreted as a polynomial with coefficients drawn from ` Z_n (n=2, … 16) ` . [Use the right upper corner settings to choose these parameters]
+    </p>
+    <div layout="column" layout-align="center center" flex="100">
+        <md-input-container class="md-block" flex>
+            <label>Number</label>
+            <input ng-model="poly.numberValue">
+        </md-input-container>
+        <span ng-show="config.displayOption!=10">
+            <span mathjax-autobind="'('+poly.numberValue+')_{'+config.displayOption+'} \\ is\\ '+poly.decimal+'\\ in\\ decimal\\ representaion '">
+
+            </span>
+        </span>
+        <br>
+        <span>
+            <span mathjax-autobind="getDecimalToCoefficient(poly.decimal)"> </span>
+        </span>
+    </div>
+    </div>
+</md-content>

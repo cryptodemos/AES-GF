@@ -1,0 +1,17 @@
+{
+  "globalDependencies": {
+    "angular": "registry:dt/angular#1.5.0+20160922195358",
+    "angular-animate": "registry:dt/angular-animate",
+    "angular-material": "registry:dt/angular-material",
+    "angular-mocks": "registry:dt/angular-mocks#1.5.0+20160608104721",
+    "angular-resource": "registry:dt/angular-resource",
+    "angular-route": "registry:dt/angular-route",
+    "jasmine": "registry:dt/jasmine",
+    "jquery": "registry:dt/jquery",
+    "mathjax": "registry:dt/mathjax",
+    "node": "registry:dt/node",
+    "selenium-webdriver": "registry:dt/selenium-webdriver",
+    "angular-cookies" : "registry:dt/angular-cookies"
+
+  }
+}

@@ -1,0 +1,97 @@
+<md-content class="md-padding">
+    <div layout-gt-sm="row" layout-align="center center" layout-wrap>
+        <div layout="column" flex-gt-sm="45">
+            <md-input-container class="md-block">
+
+                <label>Number 1</label>
+                <input ng-model="poly[0].numberValue">
+            </md-input-container>
+            <md-chips placeholder="Enter a factor e.g. x^2"
+                      secondary-placeholder="add more factor? e.g. 3x^2"
+                      ng-model="poly[0].chipArray"
+                      md-enable-chip-edit="true"
+                      md-transform-chip="ctrl.add($chip,poly[0])">
+                <md-chip-template>
+                    <span mathjax-bind="$chip.value+'*x^{'+$chip.index+'}'"></span>
+                </md-chip-template>
+                <button hide md-chip-remove></button>
+            </md-chips>
+        </div>
+
+
+        <md-fab-speed-dial md-open="false" md-direction="down"
+                           class="md-scale" ng-click="console.log(3)" flex-gt-sm="10">
+
+            <md-fab-trigger>
+                <md-tooltip md-direction="top">
+                    Operation
+                </md-tooltip>
+                <md-button aria-label="menu" class="md-fab md-warn">
+                    {{currentOperation.symbol}}
+                </md-button>
+            </md-fab-trigger>
+
+            <md-fab-actions>
+                <div ng-repeat="operation in remainingOperations">
+                    <md-button aria-label="{{operation.symbol}}" ng-click="changeOperation(operation)" class="md-fab md-raised md-mini">
+                        {{operation.symbol}}
+                    </md-button>
+                </div>
+            </md-fab-actions>
+        </md-fab-speed-dial>
+
+
+        <div layout="column" flex-gt-sm="45">
+            <md-input-container class="md-block">
+                <label>Number 2</label>
+                <input ng-model="poly[1].numberValue">
+            </md-input-container>
+            <md-chips placeholder="Enter a factor e.g. x^2 " secondary-placeholder="add more factor? e.g. x^2"  ng-model="poly[1].chipArray"  md-transform-chip="ctrl.add($chip,poly[1])">
+                <md-chip-template>
+                    <span mathjax-bind="$chip.value+'*x^{'+$chip.index+'}'"></span>
+                </md-chip-template>
+                <button md-chip-remove hidden></button>
+            </md-chips>
+        </div>
+
+
+        <div layout="column" layout-align="center center" flex="100">
+            <div>
+                <md-button class="md-raised md-primary" ng-disabled="autoCompute" ng-click="calc(true)">
+                    Calculate
+                </md-button>
+                <md-checkbox ng-model="autoCompute" ng-change="toggleAutoCompute()">
+                    Automatic Compute
+                </md-checkbox>
+            </div>
+            <div layout="column">
+                <md-input-container class="md-block">
+                    <label>Result</label>
+                    <input ng-model="poly[2].numberValue" readonly>
+                </md-input-container>
+                <md-chips placeholder="The Result" ng-model="poly[2].chipArray" readonly="true" md-transform-chip="ctrl.add($chip,poly[2])">
+                    <md-chip-template>
+                        <span mathjax-bind="$chip.value+'*x^{'+$chip.index+'}'"></span>
+                    </md-chip-template>
+                </md-chips>
+            </div>
+            <div ng-if="conf.showDetailedSteps">
+
+                <span ng-show="conf.enablePolynomialCompute" mathjax-bind="additionalSteps"></span>
+                <div ng-show="needToShowModulus" layout-align="center center">
+                    <br>
+                    Since the result has a degree larger than <span mathjax-bind="constants.degree-1"></span>
+                    , we will continue to compute modulo the irreducible polynomial
+
+                </div>
+                <span mathjax-bind="steps"></span>
+            </div>
+            <md-button  class="md-raised md-primary" ng-click="sendResult()">
+                Put Result to Number 1
+            </md-button>
+        </div>
+
+
+    </div>
+
+</md-content>

@@ -1,0 +1,95 @@
+<md-content>
+    <h1 ng-show="!config.enablePolynomialCompute">
+        Please select an irreducible polynomial from the Settings menu (upper right corner)
+    </h1>
+    <div ng-show="config.enablePolynomialCompute" layout-margin>
+
+        <div layout="column" flex="100">
+
+            <div layout-gt-sm="row" class="md-block">
+                <div flex="15" hide-xs>
+                    <!-- Spacer //-->
+                </div>
+                <div layout="column" flex>
+                    <p> Here we will demonstrate how multiplicative inverse is calculated by using Extended Euclidean algorithm:</p>
+                    <md-input-container class="md-block">
+                        <label>Solve multiplicative inverse for</label>
+                        <input ng-model="poly.numberValue">
+                    </md-input-container>
+                    <md-chips placeholder="Enter a factor e.g. 3x^2"
+                              secondary-placeholder="add more factor? e.g x^3"
+                              ng-model="poly.chipArray"
+                              md-enable-chip-edit="true"
+                              md-transform-chip="ctrl.add($chip,poly)">
+                        <md-chip-template>
+                            <div layout="row">
+                                <span mathjax-bind="$chip.value+'*x^{'+$chip.index+'}'"></span>
+                            </div>
+                        </md-chip-template>
+                        <button hide md-chip-remove></button>
+                    </md-chips>
+                </div>
+                <div flex="15" hide-xs>
+                    <!-- Spacer //-->
+                </div>
+            </div>
+
+
+            <div layout-gt-sm="row" class="md-block">
+                <div flex="15" hide-xs>
+                    <!-- Spacer //-->
+                </div>
+                <div layout="column" flex>
+                    <md-input-container class="md-block">
+                        <label>Result</label>
+                        <input readonly ng-model="result.numberValue">
+                    </md-input-container>
+                    <md-chips placeholder="Polynomial"
+                              ng-model="result.chipArray"
+                              readonly="true"
+                              md-transform-chip="ctrl.add($chip,result)">
+                        <md-chip-template>
+                            <span mathjax-bind="$chip.value+'*x^{'+$chip.index+'}'"></span>
+                        </md-chip-template>
+                        <button hide md-chip-remove></button>
+                    </md-chips>
+                </div>
+                <div flex="15" hide-xs>
+                    <!-- Spacer //-->
+                </div>
+            </div>
+
+            <div layout="row"
+                 layout-align="center center">
+                <md-button class="md-raised md-primary" ng-click="calc()">
+                    Calculate
+                </md-button>
+                <md-button class="md-raised md-primary"
+                           ng-click="toDetail('1='+poly.decimal+'&2='+result.decimal+'&op=2')">
+                    Verify
+                </md-button>
+            </div>
+
+            <div layout="column"
+                 layout-align="center center"
+                 ng-show="config.showDetailedSteps">
+                <md-radio-group ng-model="choice"
+                                layout="column" layout-align="start none">
+                    <md-radio-button ng-repeat="step in steps"
+                                     value={{step['url']}}
+                                     aria-label="{{$index}}"
+                                     ng-disabled="!(step['url'])">
+                        <span mathjax-bind="step.tex" flex="25"></span>
+                    </md-radio-button>
+                </md-radio-group>
+                <md-button class="md-raised md-primary"
+                           ng-disabled="!choice"
+                           ng-click="toDetail(choice)">
+                    Show step detail (may have to choose operator manually)
+                </md-button>
+            </div>
+
+
+        </div>
+    </div>
+</md-content>

@@ -1,0 +1,65 @@
+<md-content layout-padding="" ng-controller="RightCtrl">
+    <div layout="column">
+
+        <md-input-container class="md-block" flex="100">
+            <label>
+                Polynomial coefficients from
+                <span mathjax-autobind="'Z_{'+config.field+'}'"></span>
+            </label>
+            <md-select ng-model="config.field" ng-change="fieldChanged()" ng-disabled="config.enablePolynomialCompute">
+                <md-option ng-repeat="field in fields" value="{{field}}" >
+                    {{field}}
+                </md-option>
+            </md-select>
+            <md-tooltip md-direction="left" class="hint" ng-if="config.enablePolynomialCompute">
+                Disable Compute in
+                <span mathjax-autobind="'GF('+2+'^{'+constants.degree+'})'"></span>
+                to change
+            </md-tooltip>
+            <md-tooltip ng-if="primeField.indexOf(config.field.toString())==-1">
+                Not a prime Number, division is disabled.
+            </md-tooltip>
+        </md-input-container>
+
+
+        <md-input-container class="md-block" flex="100">
+            <label>Radix for representation</label>
+            <md-select ng-model="config.displayOption" ng-change="fieldChanged()">
+                <md-option ng-repeat="option in displayOptions" value="{{option.value}}" >
+                    {{option.text}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-checkbox ng-model="config.enablePolynomialCompute" ng-change="toF2()"
+                     aria-label="Checkbox 0"
+                     ng-disabled="!config.pageConfig.canComputeInGFTwo">
+            <md-tooltip ng-if="!config.pageConfig.canComputeInGFTwo">
+                {{config.pageConfig.messageForGFTwo}}
+            </md-tooltip>
+            Compute in
+            <span mathjax-autobind="'GF('+2+'^{'+constants.degree+'})'"></span>
+            <span ng-show="constants.degree==8">(AES)</span>
+        </md-checkbox>
+
+        <div layout-align="center center"
+             ng-show="config.enablePolynomialCompute">
+            The result will be modulo
+            <span mathjax-autobind="constants.modulusTex"></span>
+            <br>
+
+
+        </div>
+        <md-button class="md-raised md-primary"
+                   ng-disabled="(!config.enablePolynomialCompute)||(!config.pageConfig.canChangePolynomial)"
+                   ng-click="showChangePolynomial($event)">
+
+             irreducible Polynomial
+        </md-button>
+
+        <md-checkbox ng-model="config.showDetailedSteps" ng-change="fieldChanged()" aria-label="Checkbox 1">
+            Show Detailed Calculation Steps
+        </md-checkbox>
+
+    </div>
+
+</md-content>

@@ -1,0 +1,88 @@
+<md-content>
+    <div layout="column">
+        <div layout="row">
+            <div flex="15" hide-xs>
+                <!-- Spacer //-->
+            </div>
+            <div layout="column" flex>
+                <div layout="row">
+                    <md-input-container flex class="md-block">
+                        <label>The Sbox Input</label>
+                        <input ng-model="poly.numberValue">
+                    </md-input-container>
+                    <div layout="row" layout-align="center center">
+                        <md-button class="md-raised md-primary" ng-click="calc()">
+                            Calculate
+                        </md-button>
+                    </div>
+                </div>
+                <div layout="column" layout-align="center center">
+                    <h1>
+                        is mapped to the output
+                        <span mathjax-bind="padding + sboxResult.toString(config.displayOption)"></span>
+                    </h1>
+                    <p ng-show="sboxResult==42">
+                        which
+                        <span ng-show="config.displayOption!=10">
+                            is 42 in decimal, that
+                        </span>
+                        happens to be
+                        <a href="https://www.google.com/search?q=answer+to+life,+the+universe+and+everything"
+                           style="text-decoration: none">
+                            <i>the answer to life, the universe and everything</i>
+                        </a>
+                    </p>
+                </div>
+                <div ng-show="config.showDetailedSteps">
+                    <p>
+                        The detailed steps are as follows:
+                        <span ng-show="poly.numberValue!=0">
+                            First, we compute the multiplicative inverse of {{poly.numberValue}} , and we get
+                        </span>
+                        <span ng-show="poly.numberValue==0">
+                            For 0, though a multiplicative inverse does not exist, we choose by default the following value.
+                        </span>
+                    </p>
+                    <div layout="row">
+                        <md-input-container flex class="md-block">
+                            <label> multiplicative inverse </label>
+                            <input readonly ng-model="result.numberValue">
+                        </md-input-container>
+                        <div layout="row" layout-align="center center">
+                            <md-button class="md-raised md-primary" ng-click="redirect()">
+                                How?
+                            </md-button>
+                        </div>
+                    </div>
+                    <p>
+                        {{result.numberValue}} in binary is
+                        <span mathjax-bind="formatNumber(result.decimal)"></span>
+                        Multiplying it (with least significant bit on the top) with the AES affine matrix, we obtain
+                    </p>
+                    <div layout="row" layout-align="center center">
+                        <span mathjax-bind="matrixProduct"></span>
+                    </div>
+                    <p>
+                        Finally, we take the intermediate result
+                        <span mathjax-bind="formatNumber(intermediateResult)"></span>
+                        and xor it with the AES vector
+                    </p>
+                    <div layout="column" layout-align="center center">
+                        <span mathjax-bind="finalProcess"></span>
+                        <p>
+                            Thus, the corresponding result
+                            <span mathjax-bind="formatNumber(sboxResult)"></span>
+                            <span ng-show="config.displayOption!=2">
+                                expressed in {{constants.DISPLAY_OPTIONS[config.displayOption]}} is the final mapping, namely
+                                <span mathjax-bind="sboxResult.toString(config.displayOption)"></span>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div flex="15" hide-xs>
+                <!-- Spacer //-->
+            </div>
+        </div>
+    </div>
+</md-content>
